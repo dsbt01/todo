@@ -19,7 +19,7 @@ const Home = () => {
 
   function addTodo() {
     if (inputValue === "") {
-		alert("Please enter a valid task");
+      alert("Please enter a valid task");
     } else {
       index += 1;
       let newItem = {
@@ -35,6 +35,13 @@ const Home = () => {
     }
   }
 
+  function keyPress(e) {
+    if (e.keyCode === 13)
+	{
+		addTodo();
+	}
+  }
+
   return (
     <div className="container">
       <div className="main-div">
@@ -44,6 +51,7 @@ const Home = () => {
             <div className="col-10">
               <input
                 type="text"
+                onKeyDown={(e) => keyPress(e)}
                 onChange={(e) => setInputValue(e.target.value)}
                 value={inputValue}
               ></input>
