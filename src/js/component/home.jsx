@@ -1,29 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+let globalList = [];
+let index = -1;
 
-//create your first component
 const Home = () => {
+  const [inputValue, setInputValue] = useState("");
+
+  function printTodo() {
+    const ul = document.getElementById("my-list");
+    let content = "";
+
+    globalList.forEach(function (item) {
+      content = content + "<li key='" + item.id + "'>" + item.text + "</li>";
+    });
+
+    ul.innerHTML = content;
+  }
+
+  function addTodo() {
+    if (inputValue === "") {
+		alert("Please enter a valid task");
+    } else {
+      index += 1;
+      let newItem = {
+        id: index,
+        text: inputValue,
+      };
+
+      globalList.push(newItem);
+
+      printTodo();
+
+      setInputValue("");
+    }
+  }
+
   return (
     <div className="container">
       <div className="main-div">
         <p>To Do's</p>
-		<div className="input-div">
-			<div className="row">
-				<div className="col-10">
-					<input></input>
-				</div>
-				<div className="col-1">
-					<button>Task</button>
-				</div>
-			</div>
-			<ul className="todo-container">
-				<li>test</li>
-				<li>test</li>
-				<li>test</li>
-			</ul>
-		</div>
+        <div className="input-div">
+          <div className="row">
+            <div className="col-10">
+              <input
+                type="text"
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue}
+              ></input>
+            </div>
+            <div className="col-1">
+              <button onClick={() => addTodo()}>Task</button>
+            </div>
+          </div>
+          <ul id="my-list" className="todo-container"></ul>
+        </div>
       </div>
     </div>
   );
