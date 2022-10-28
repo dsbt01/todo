@@ -9,16 +9,25 @@ const Home = () => {
   function handleRemove(id) {
     console.log(id);
     let indexToDelete = -1;
-    for (let i = 0; globalList.count; i++) {
-      if (globalList[i].id === id) {
+
+	console.log(globalList.length);
+
+    for (let i = 0;i < globalList.length; i++) {
+		console.log("in");
+		console.log(id);
+		console.log(i);
+		if (globalList[i].id === id) {
         indexToDelete = i;
+		console.log("found");
       }
     }
 
-    if (indexToDelete != -1) {
-      globalList = globalList.splice(indexToDelete, 1);
+	console.log(indexToDelete);
 
-      printTodo();
+    if (indexToDelete != -1) {
+    	globalList.splice(indexToDelete, 1);
+
+      //printTodo();
     }
   }
 
@@ -45,14 +54,21 @@ const Home = () => {
       alert("Please enter a valid task");
     } else {
       index += 1;
+
+	  console.log(index);
+
       let newItem = {
         id: index,
         text: inputValue,
       };
 
+	  console.log(newItem);
+
       globalList.push(newItem);
 
-      printTodo();
+	  console.log(globalList);
+
+      //printTodo();
 
       setInputValue("");
     }
@@ -84,7 +100,17 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <ul id="my-list" className="todo-container"></ul>
+          <ul id="my-list" className="todo-container">
+            {globalList.map((item) => (
+              <li key={item.id}>
+                <span>{item.text}</span>
+				<span>    </span>
+                <button id="delete-btn" type="button" onClick={() => handleRemove(item.id)}>
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

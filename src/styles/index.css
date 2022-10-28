@@ -23,6 +23,10 @@ input{
     width: 100px;
 }
 
+#delete-btn{
+    border: none;
+}
+
 ul{
     background-color: white;
     border: 2px solid grey;
