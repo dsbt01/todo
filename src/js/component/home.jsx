@@ -77,19 +77,23 @@ const Home = () => {
             </div>
           </div>
           <ul id="my-list" className="todo-container">
-            {globalList.map((item) => (
-              <li key={item.id}>
-                <span>{item.text}</span>
-                <span> </span>
-                <button
-                  id="delete-btn"
-                  type="button"
-                  onClick={() => handleRemove(item.id)}
-                >
-                  X
-                </button>
-              </li>
-            ))}
+            {globalList.length > 0 ? (
+              globalList.map((item) => (
+                <li key={item.id}>
+                  <span>{item.text}</span>
+                  <span> </span>
+                  <button
+                    id="delete-btn"
+                    type="button"
+                    onClick={() => handleRemove(item.id)}
+                  >
+                    X
+                  </button>
+                </li>
+              ))
+            ) : (
+              <h3>Please enter data</h3>
+            )}
           </ul>
         </div>
       </div>
