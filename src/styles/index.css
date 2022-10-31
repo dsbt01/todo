@@ -37,9 +37,18 @@ ul{
     margin-top: 10px;
 }
 
+ul button{
+    visibility: hidden;
+}
+
 li{
     list-style: none;
     padding: 5px;
     margin: 5px;
     border: 1px solid grey;
+}
+
+li:hover > *
+{
+    visibility: visible;
 }

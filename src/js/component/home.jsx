@@ -81,7 +81,6 @@ const Home = () => {
               globalList.map((item) => (
                 <li key={item.id}>
                   <span>{item.text}</span>
-                  <span> </span>
                   <button
                     id="delete-btn"
                     type="button"
@@ -92,7 +91,7 @@ const Home = () => {
                 </li>
               ))
             ) : (
-              <h3>Please enter data</h3>
+              <h3>No tasks, Add a task</h3>
             )}
           </ul>
         </div>
